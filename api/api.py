@@ -1,12 +1,20 @@
+from xml.etree.ElementTree import TreeBuilder
 from flask import Flask
 from markupsafe import escape
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+if __name__ == '__main__':
+    app.run(port=8000,debug=True)
 
-@app.route("/<name>")
-def hello(name):
-    return f"Hello, {escape(name)}!"
+
+@app.route('/')
+def index():
+    return "Hello World"
+
+
+@app.route('/spell/<string:name>')
+def spell(name):
+    return "<h1> Hello " + name + "</h1>"
+
+
